@@ -1,0 +1,53 @@
+/* Google Fonts - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    background-color: #858588;
+}
+
+.contagem-iniciar{
+    background-color: blueviolet;
+    width: 200px;
+    height: 40px;
+    font-weight: 500;
+    font-size: 20px;
+    border-radius: 4px;
+    margin-top: 100px;
+    margin-left: 35%;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+.contagem-iniciar:hover{
+    background-color: #2980b9;
+}
+.stop-scanning{
+    background-color: blueviolet;
+    width: 200px;
+    height: 40px;
+    font-weight: 500;
+    font-size: 20px;
+    border-radius: 4px;
+    margin-top: 100px;
+    margin-left: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+.stop-scanning:hover{
+    background-color: #2980b9;
+}
+.code-search{
+    margin-top: 200px;
+    margin-left: -350px;
+}
+.scanner-container {
+    position: absolute;
+}
+

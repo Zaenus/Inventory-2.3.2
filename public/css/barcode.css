@@ -1,0 +1,12 @@
+body{
+    font-family: Arial, sans-serif;
+}
+#reader {
+    width: 300px;
+    margin: 20px auto;
+}
+#result {
+    text-align: center;
+    font-size: 1.2em;
+    color: green;
+}

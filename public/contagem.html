@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contagem Física</title>
+  <link rel="stylesheet" href="./css/contagem.css">
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+
+<main class="container">
+  <header class="title">
+    <i data-feather="clipboard-list" class="icon"></i>
+    <h1>Contagem Física do Estoque</h1>
+  </header>
+
+  <!-- Scanner + Novo Inventário -->
+  <div class="top-actions">
+    <button id="barcodeScanner" class="btn-icon">
+      <i data-feather="camera"></i> Leitor de Códigos
+    </button>
+    <button id="newInventory" class="btn-danger">
+      <i data-feather="trash-2"></i> Novo Inventário
+    </button>
+  </div>
+
+    <!-- Busca + Botão de Pesquisa Avançada -->
+    <section class="search-bar">
+    <div class="input-group">
+        <input type="text" id="productCode" placeholder="Digite o código ou escaneie..." autofocus>
+        <button id="searchProductBtn" class="btn-search-product" title="Buscar produto por nome">
+        <i data-feather="search"></i>
+        </button>
+    </div>
+    <button id="searchBtn" class="btn-primary">
+        <i data-feather="zap"></i> Buscar Código
+    </button>
+    </section>
+
+  <!-- Info do Produto -->
+  <section class="product-info">
+    <div class="description" id="productDescription">Selecione um produto</div>
+    <div class="stats">
+      <span class="stat sistema"><i data-feather="package"></i> Sistema: <strong id="productQuantity">0</strong></span>
+      <span class="stat conferido"><i data-feather="check-circle"></i> Conferido: <strong id="productConf">0</strong></span>
+      <span class="stat diferenca" id="productDif">Diferença: <strong>0</strong></span>
+    </div>
+  </section>
+
+  <!-- Quantidade -->
+  <section class="quantity-input">
+    <label>Qtd Contada:</label>
+    <input type="number" id="inventarioQtd" min="0" step="0.01" placeholder="0">
+    <button id="registerBtn" class="btn-success">
+      <i data-feather="check"></i> F10 - Registrar
+    </button>
+  </section>
+
+  <!-- Tabela -->
+  <section class="table-section">
+    <div class="table-header">
+      <h3>Itens Contados Hoje</h3>
+      <span id="totalItems">0 itens</span>
+    </div>
+    <div class="table-container">
+      <table id="inventoryTable">
+        <thead>
+          <tr>
+            <th>Qtd</th>
+            <th>Código</th>
+            <th>Produto</th>
+            <th class="mobile-hide">P. Custo</th>
+            <th class="mobile-hide">P. Venda</th>
+            <th class="mobile-hide">Margem</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<!-- Modal Inteligente -->
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <h2 id="modalTitle">Atenção</h2>
+    <p id="modalMessage"></p>
+    <div class="modal-actions">
+      <button id="confirmBtn" class="btn btn-confirm">Sim, confirmar</button>
+      <button id="cancelBtn" class="btn btn-cancel">Cancelar</button>
+      <button id="okBtn" class="btn btn-confirm" style="display:none">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- Notificação Toast -->
+<div id="toast" class="toast hidden"></div>
+
+<script type="module" src="./js/inventory.js"></script>
+<script>feather.replace()</script>
+</body>
+</html>

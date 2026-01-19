@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Importar Produtos</title>
+  <link rel="stylesheet" href="./css/importar.css">
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<main class="container">
+  <header class="title">
+    <i data-feather="upload" class="icon"></i>
+    <h1>Importação de Produtos</h1>
+  </header>
+
+  <section class="file-select">
+    <input type="file" id="fileInput" accept=".xlsx, .xls" class="file-input">
+    <label for="fileInput" class="file-label">
+      Escolher Arquivo Excel
+    </label>
+    <small>Colunas esperadas: Código | Produto | Estoque | Cód.Barras | Cód.Barras Sec | Custo | Preço Venda</small>
+  </section>
+
+  <div id="progressContainer" class="progress hidden">
+    <div class="progress-bar">
+      <div id="progressFill" class="fill" style="width: 0%"></div>
+    </div>
+    <p id="progressText">Processando 0 de 0 produtos...</p>
+  </div>
+
+  <footer class="actions">
+    <button id="importBtn" class="btn btn-primary">
+      <i data-feather="upload-cloud"></i>
+      Importar
+    </button>
+    <button id="cancelBtn" class="btn btn-cancel">
+      <i data-feather="x"></i>
+      Cancelar
+    </button>
+  </footer>
+</main>
+
+<!-- Modal -->
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <h2 id="modalTitle">Atenção</h2>
+    <p id="modalMessage"></p>
+    <div class="modal-actions">
+      <button id="confirmBtn" class="btn btn-confirm">Sim, importar</button>
+      <button id="closeBtn" class="btn btn-cancel">Cancelar</button>
+      <button id="okBtn" class="btn btn-confirm" style="display: none;">OK</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script type="module" src="./js/importar.js"></script>
+<script>feather.replace()</script>
+</body>
+</html>

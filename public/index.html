@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coletor 2.3.2</title>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+
+  <main class="container">
+    <header class="header">
+      <i data-feather="zap" class="logo-icon"></i>
+      <h1>Coletor de Produtos</h1>
+      <p class="version">v2.3.2</p>
+    </header>
+
+    <div class="grid">
+      <button class="card" data-action="contagem">
+        <i data-feather="qrcode-scan"></i>
+        <h3>Iniciar Contagem</h3>
+        <span class="shortcut">F2</span>
+      </button>
+
+      <button class="card" data-action="importar">
+        <i data-feather="file-up"></i>
+        <h3>Importar Produtos</h3>
+        <span class="shortcut">F8</span>
+      </button>
+
+      <button class="card" data-action="exportar">
+        <i data-feather="download-cloud"></i>
+        <h3>Exportar Inventário</h3>
+        <span class="shortcut">F9</span>
+      </button>
+
+      <button class="card" data-action="margens">
+        <i data-feather="dollar-sign"></i>
+        <h3>Relatório de Margens</h3>
+        <span class="shortcut">F10</span>
+      </button>
+
+      <button class="card delete" data-action="excluir">
+        <i data-feather="trash-2"></i>
+        <h3>Excluir Contagem do Dia</h3>
+        <span class="shortcut warn">CUIDADO</span>
+      </button>
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h2 id="modalTitle">Confirmar Ação</h2>
+      <p id="modalMessage">Tem certeza que deseja excluir toda a contagem do dia?</p>
+      <div class="modal-actions">
+        <button id="confirmBtn" class="btn danger">Sim, Excluir</button>
+        <button id="cancelBtn" class="btn secondary">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script type="module" src="./js/index.js"></script>
+  <script>feather.replace()</script>
+</body>
+</html>

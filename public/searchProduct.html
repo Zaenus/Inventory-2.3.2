@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Procurar Produto</title>
+  <link rel="stylesheet" href="./css/searchProduct.css">
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+
+<main class="container">
+  <header class="title">
+    <i data-feather="search" class="icon"></i>
+    <h1>Procurar Produto</h1>
+  </header>
+
+  <section class="search-section">
+    <div class="search-box">
+      <i data-feather="search"></i>
+      <input type="text" id="searchInput" placeholder="Digite o nome, código ou código de barras..." autofocus>
+    </div>
+    <button id="closeBtn" class="btn-close">
+      <i data-feather="x"></i>
+    </button>
+  </section>
+
+  <div id="resultsCount" class="results-count">Carregando produtos...</div>
+
+  <section class="table-container">
+    <table id="productTable">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Produto</th>
+          <th class="hide-mobile">Cód. Barras</th>
+          <th>Estoque</th>
+          <th class="hide-mobile">P. Venda</th>
+          <th class="hide-mobile">Margem</th>
+        </tr>
+      </thead>
+      <tbody id="productList"></tbody>
+    </table>
+  </section>
+
+  <div id="noResults" class="no-results hidden">
+    <i data-feather="alert-circle"></i>
+    Nenhum produto encontrado
+  </div>
+</main>
+
+<!-- Toast -->
+<div id="toast" class="toast hidden"> </div>
+
+<script type="module" src="./js/searchProduct.js"></script>
+<script>feather.replace()</script>
+</body>
+</html>

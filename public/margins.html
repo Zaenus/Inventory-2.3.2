@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Margens</title>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="./css/relatorio-margens.css">
+</head>
+<body>
+
+<main class="container">
+  <header class="header">
+    <i data-feather="trending-up" class="icon"></i>
+    <h1>Relatório de Margens</h1>
+    <p>Análise completa de lucratividade por produto
+  </header>
+
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Buscar por código ou produto..." autocomplete="off">
+    <button id="exportExcel" class="btn excel">
+      <i data-feather="download"></i> Exportar Excel
+    </button>
+  </div>
+
+  <div class="summary">
+    <div class="card">
+      <span>Total de Produtos</span>
+      <strong id="totalProducts">0</strong>
+    </div>
+    <div class="card">
+      <span>Margem Média</span>
+      <strong id="avgMargin">0,0%</strong>
+    </div>
+    <div class="card danger">
+      <span>Abaixo de 30%</span>
+      <strong id="badMargin">0</strong>
+    </div>
+  </div>
+
+  <div class="table-container" id="tableContainer">
+    <div class="loading">Carregando produtos...</div>
+  </div>
+</main>
+
+<div id="toast" class="toast hidden"></div>
+
+<script type="module" src="./js/margins.js"></script>
+<script>feather.replace()</script>
+</body>
+</html>

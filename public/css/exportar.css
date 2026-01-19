@@ -1,0 +1,195 @@
+
+/* ========================================
+   EXPORTAR CONTAGEM - DESIGN PREMIUM 2025
+   ======================================== */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: linear-gradient(135deg, #e0e7ff, #c3dafe);
+  color: #1f2a44;
+  min-height: 100vh;
+  padding: 1rem;
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  width: min(95%, 1000px);
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.title {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.title .icon {
+  width: 4rem;
+  height: 4rem;
+  color: #10b981;
+}
+
+.title h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #10b981, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Inputs de data/hora */
+.date-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.input-group input {
+  padding: 1rem;
+  font-size: 1.1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+/* Botões */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.btn.txt {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+}
+
+.btn.excel {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+/* Tabela */
+.table-container {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 1.2rem;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+td {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #f3f4f6;
+  text-align: center;
+}
+
+tr:hover {
+  background: #f0fdf4;
+}
+
+.dif-negativa { color: #ef4444; font-weight: bold; }
+.dif-positiva { color: #10b981; font-weight: bold; }
+.dif-zero { color: #6b7280; }
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+  font-size: 1.2rem;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #10b981;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 14px;
+  font-weight: 600;
+  z-index: 3000;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.toast.show { opacity: 1; }
+.toast.error { background: #ef4444; }
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .date-section { grid-template-columns: 1fr; }
+  .buttons { flex-direction: column; }
+  th, td { font-size: 0.9rem; padding: 0.8rem; }
+}

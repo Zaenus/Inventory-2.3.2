@@ -1,0 +1,114 @@
+2024-11-18:
+
+ --> Major updates in contagem "page" including entire rework of the page changing to a table;
+ --> Several improvements in displaying error in the inventory page plus rework of "searchProduct" page;
+ --> Some changes in the routes to edit quantities and delete items from the inventory table;
+ --> Several changes in CSS of both search and inventory pages to better match the mobile version;  
+
+2024-11-19:
+
+--> Rework in CSS styling of the export page;
+--> Reworks in CSS from importing and index page in order to be more responsive;
+--> Development of the page that changes the IP before the https server start;
+--> improvements in server reaching the new IP making the code faster and smoother;
+
+2024-11-20:
+
+--> Further development of scan barcode page;
+--> Several fixes in scanning page and fine preliminary results, ready for testing;
+--> Scan and "contagem" page working fine together, time for testing with different barcodes and different cellphones;
+
+2024-11-21:
+
+--> Fixed a bug causing the contagem page to register inventory without a valid product;
+
+2024-11-22:
+
+--> Fixed a problem with the filtering in exportation that did not export itens with 0 quantities in the system;
+
+2024-11-25:
+
+--> Created the function to display notifications as a pop-up, moved to global and implemented in alerts;
+
+2024-11-30:
+
+--> Created the eventListener to capture enter in serch products page, before was just clicking;
+--> Adjust the area of click input to other page in index.html, before we needed click on icons, now the entire div works, this creates a smoother app;
+
+2025-09-10 (2.2.0):
+
+--> Lots of fixes on performance including problems with exporting; 
+--> Adjustments of layout to better suit the mobile version;
+--> Inclusion of the export to Excel button in export page;
+
+2025-09-15:
+
+--> Slight performance update with "saveToLocalStorage" function enhancement in import.js;
+--> Importing without necessity of changing anything in the excel file tested and working; 
+
+2025-10-14 (2.2.1):
+
+--> Fixed some layout issues and change some colors from the H1 of "Contagem" page;
+--> Cleaned up the server routes and moved them for other files making the server code more readeable;
+--> Fixed the input and code focus after clicking in "inserir" and "registrar" on "Contagem" page;
+--> Added routes for pages in order to a better transition between pages;
+--> Added a modal on export page in order to display errors if you  fail to select products;
+
+2025-11-07:
+
+ --> Fixed a duplication on fecth() in the export.js causing duplication
+ of the table of inventory and duplicating the txt and excel files;
+
+2025-11-19:
+
+ --> Changes in the database to import the cost and sell prices from products,
+as well as profit margins;
+ --> Adjustments in import page to handle the new import sheet and DB saving;
+ --> Changes in the page layout to become more modern;
+ --> Changes in contagem page to adjust to new DB information, we now display
+products sell and cost prices and also the profit margins based on sell prices;
+ --> Implementing the margin color format idealizing the good margin as 45% +;
+ --> Adjustment in the layout to fit the new design from import page;
+ --> Massive adjustments in search product page to fit new design and
+ information;
+ --> Implemented edit on quantities registered and multiple tests made;
+
+2025-11-20:
+
+ --> Fixed the error that was importing the first header from the products in
+the Excel file;
+ --> Updated export page to fit new design;
+ --> Changed the export to TXT to fit Cipherlab format with code and
+ not barcode removing the necessity of 2 exporting files in TXT;
+ --> Updated index page to fit new design and fixed the issue with delete
+ button;
+ --> Created a new route fo delete the inventory and for creating the
+ exporting table optimizing both actions;
+
+2025-11-27:
+
+ --> Fixed a issue with the barcode scan page and handle in inventory page;
+
+2025-11-28:
+
+ --> Added the page for margins;
+
+2025-12-02:
+
+ --> Fixed an issue with the exportation to TXT file where the quantity was
+ not correctly exported;
+
+2025-12-03:
+
+ --> Fixed bugs displaying only products that where registered in the same
+day, both in contagem page and export page;
+
+2026-01-19:
+
+ --> Fixed an issue with the date of the exported products, now the date is
+ correctly exported based on the date and hour of the counting;
+ 
+# Future updates:
+
+
+

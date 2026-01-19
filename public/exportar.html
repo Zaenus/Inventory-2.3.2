@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exportar Contagem</title>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="./css/exportar.css">
+</head>
+<body>
+
+<main class="container">
+
+  <header class="title">
+    <i data-feather="download-cloud" class="icon"></i>
+    <h1>Exportar Contagem Física</h1>
+  </header>
+
+  <section class="date-section">
+    <div class="input-group">
+      <label>Data do Inventário:</label>
+      <input type="date" id="dateInput" required>
+    </div>
+    <div class="input-group">
+      <label>Hora do Inventário:</label>
+      <input type="time" id="timeInput" required>
+    </div>
+  </section>
+
+  <div class="buttons">
+    <button id="exportTxtBtn" class="btn txt">
+      <i data-feather="file-text"></i> Exportar TXT
+    </button>
+    <button id="exportExcelBtn" class="btn excel">
+      <i data-feather="file-spreadsheet"></i> Exportar Excel
+    </button>
+  </div>
+
+  <section class="table-container" id="tableContainer">
+    <div class="loading">Carregando contagem do dia...</div>
+  </section>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+</main>
+<script type="module" src="./js/exportar.js"></script>
+<script>feather.replace()</script>
+</body>
+</html>
