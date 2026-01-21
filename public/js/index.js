@@ -180,15 +180,15 @@ export { showModal, hideModal };document.addEventListener("DOMContentLoaded", ()
     card.addEventListener("click", () => {
       const action = card.dataset.action;
       if (action === "excluir") {
-        modalTitle.textContent = "Excluir Contagem do Dia";
+        modalTitle.textContent = "Excluir Contagem Completa";
         modalMessage.textContent = "Tem certeza? Esta ação não pode ser desfeita.";
         modal.style.display = "flex";
 
         const confirmHandler = async () => {
           try {
-            const res = await fetch("/api/inventory/resetDay", { method: "DELETE" });
+            const res = await fetch("/api/inventory/resetAll", { method: "DELETE" });
             if (res.ok) {
-              showToast("Reset completo! Tudo limpo para amanhã!");
+              showToast("Reset completo! Tudo limpo!");
             } else {
               showToast("Erro ao excluir contagem", true);
             }

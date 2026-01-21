@@ -329,7 +329,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       type: "warning",
       onConfirm: async () => {
         try {
-          await fetch("/api/clearInventory", { method: "DELETE" });
+          await fetch("/api/clearTodayInventory", { method: "DELETE" });
           showToast("Novo inventário iniciado!");
           loadInventoryData();
           clearForm();
