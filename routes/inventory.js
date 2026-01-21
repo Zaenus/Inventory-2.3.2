@@ -19,7 +19,7 @@ module.exports = (db) => {
     const query = `
       INSERT INTO inventory_compaction 
         (codigo, codigo_de_barras, produto, quantidade_contada, data_hora)
-      VALUES (?, ?, ?, ?, datetime('now'))
+      VALUES (?, ?, ?, ?, datetime('now', '-3 hours'))
     `;
 
     db.run(query, [codigo, codigo_de_barras || null, produto, qtd], function (err) {
@@ -225,40 +225,51 @@ router.get('/inventoryExport', (req, res) => {
       });
   });
 
-  router.delete('/inventory/resetDay', (req, res) => {
-    // Usando transação pra garantir que ou apaga tudo, ou nada
-    db.serialize(() => {
-      db.run("BEGIN TRANSACTION");
+  router.delete('/inventory/resetAll', (req, res) => {
+      db.serialize(() => {
+          db.run("BEGIN TRANSACTION");
 
-      // 1. Apaga toda a contagem de hoje
-      db.run(`DELETE FROM inventory_compaction WHERE date(data_hora) = date('now')`, function(err) {
-        if (err) {
-          console.error("Erro ao limpar inventory_compaction:", err);
-          db.run("ROLLBACK");
-          return res.status(500).json({ success: false, error: "Falha ao limpar contagem" });
-        }
-        console.log(`Contagem do dia apagada: ${this.changes} itens`);
+          // 1. Apaga TODA a tabela inventory_compaction (histórico completo)
+          db.run(`DELETE FROM inventory_compaction`, function(err) {
+              if (err) {
+                  console.error("Erro ao limpar inventory_compaction:", err);
+                  db.run("ROLLBACK");
+                  return res.status(500).json({ 
+                      success: false, 
+                      error: "Falha ao limpar histórico de contagens" 
+                  });
+              }
+
+              const deletedCompaction = this.changes;
+              console.log(`inventory_compaction limpa: ${deletedCompaction} registros removidos`);
+
+              // 2. Apaga TODOS os produtos
+              db.run(`DELETE FROM products`, function(err) {
+                  if (err) {
+                      console.error("Erro ao limpar products:", err);
+                      db.run("ROLLBACK");
+                      return res.status(500).json({ 
+                          success: false, 
+                          error: "Falha ao limpar produtos" 
+                      });
+                  }
+
+                  const deletedProducts = this.changes;
+                  console.log(`products limpa: ${deletedProducts} produtos removidos`);
+
+                  // Tudo correu bem → commit
+                  db.run("COMMIT");
+
+                  res.json({
+                      success: true,
+                      message: "Reset TOTAL realizado! Todas as contagens e produtos foram apagados.",
+                      deletedCompactionRecords: deletedCompaction,
+                      deletedProducts: deletedProducts,
+                      timestamp: new Date().toISOString()
+                  });
+              });
+          });
       });
-
-      // 2. Apaga TODOS os produtos (vai importar novos amanhã)
-      db.run(`DELETE FROM products`, function(err) {
-        if (err) {
-          console.error("Erro ao limpar products:", err);
-          db.run("ROLLBACK");
-          return res.status(500).json({ success: false, error: "Falha ao limpar produtos" });
-        }
-        console.log(`Tabela products limpa: ${this.changes} produtos removidos`);
-
-        // Tudo deu certo → commit
-        db.run("COMMIT");
-        res.json({ 
-          success: true, 
-          message: "Reset completo! Contagem e produtos apagados.",
-          deletedInventory: this.changes,
-          deletedProducts: this.changes  // último this.changes = products
-        });
-      });
-    });
   });
 
   return router;
