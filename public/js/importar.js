@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalMessage = document.getElementById("modalMessage");
   const confirmBtn = document.getElementById("confirmBtn");
   const closeBtn = document.getElementById("closeBtn");
+  const okBtn = document.getElementById("okBtn");
   const progressContainer = document.getElementById("progressContainer");
   const progressFill = document.getElementById("progressFill");
   const progressText = document.getElementById("progressText");

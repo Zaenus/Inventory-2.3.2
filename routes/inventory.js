@@ -39,7 +39,6 @@ module.exports = (db) => {
         i.produto,
         i.quantidade_contada,
         i.data_hora,
-        p.codigo,
         p.preco_custo,
         p.preco_venda,
         p.margem_lucro
@@ -156,7 +155,7 @@ router.get('/inventoryExport', (req, res) => {
   });
 
   router.delete('/clearTodayInventory', (req, res) => {
-    const query = `DELETE FROM inventory_compaction WHERE date(data_hora) = date('now')`;
+    const query = `DELETE FROM inventory_compaction WHERE date(data_hora) = date('now', '-3 hours')`;
 
     db.run(query, function (err) {
       if (err) {
@@ -258,14 +257,23 @@ router.get('/inventoryExport', (req, res) => {
                   console.log(`products limpa: ${deletedProducts} produtos removidos`);
 
                   // Tudo correu bem → commit
-                  db.run("COMMIT");
+                  db.run("COMMIT", function(commitErr) {
+                      if (commitErr) {
+                          console.error("Erro ao commitar transação:", commitErr);
+                          db.run("ROLLBACK");
+                          return res.status(500).json({
+                              success: false,
+                              error: "Falha ao finalizar transação"
+                          });
+                      }
 
-                  res.json({
-                      success: true,
-                      message: "Reset TOTAL realizado! Todas as contagens e produtos foram apagados.",
-                      deletedCompactionRecords: deletedCompaction,
-                      deletedProducts: deletedProducts,
-                      timestamp: new Date().toISOString()
+                      res.json({
+                          success: true,
+                          message: "Reset TOTAL realizado! Todas as contagens e produtos foram apagados.",
+                          deletedCompactionRecords: deletedCompaction,
+                          deletedProducts: deletedProducts,
+                          timestamp: new Date().toISOString()
+                      });
                   });
               });
           });

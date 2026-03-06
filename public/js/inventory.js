@@ -375,28 +375,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         showToast("Permitir pop-ups/novas abas para este site", true);
         return;
     }
-
-    // Fica ouvindo mensagem do filho (a página de busca)
-    const handleMessage = (event) => {
-        // Segurança: aceita só da nossa origem
-        if (event.origin !== window.location.origin) return;
-
-        if (event.data && event.data.type === "PRODUCT_SELECTED") {
-        const { codigo, codigo_de_barras } = event.data;
-
-        // Preenche o campo e busca automaticamente
-        productCodeInput.value = codigo_de_barras || codigo;
-        searchProduct();
-
-        // Traz foco de volta para esta aba
-        window.focus();
-
-        // Remove o listener
-        window.removeEventListener("message", handleMessage);
-        }
-    };
-
-    window.addEventListener("message", handleMessage);
   }
 
   // === LISTENER UNIVERSAL: Recebe produto do leitor ou da busca em nova aba/tabela ===
